@@ -1,0 +1,33 @@
+{
+  "name": "hiitea-api",
+  "version": "0.0.1",
+  "description": "A collection of useful API",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app",
+    "lint": "eslint ./api app.js config.js --fix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sabrinaluo/api.git"
+  },
+  "author": "Sabrina Luo <luohaojing@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sabrinaluo/api/issues"
+  },
+  "homepage": "https://github.com/sabrinaluo/api#readme",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "cheerio": "^0.20.0",
+    "cors": "^2.7.1",
+    "express": "^4.14.0",
+    "express-session": "^1.13.0",
+    "nconf": "^0.8.4",
+    "request-promise": "^3.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^2.13.1",
+    "eslint-config-google": "^0.6.0"
+  }
+}

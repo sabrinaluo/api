@@ -1,0 +1,15 @@
+language: node_js
+node_js:
+- 4.4.0
+branches:
+  only:
+    - master
+deploy:
+  provider: heroku
+  api_key:
+    secure: v1yrmjeCi598ysIBRKoT18xDMhgE/2bTtIOz5oEGooSi4zLz398xzagCaa0y2PVOOB+v+diDCJVYF+1qS3CRM3uWpyt7pyZJxR36rWMnM+DjYT+MVTxgPvYAL82IV4Ac7j1aq6wrUgT+PSHBVqVGsAunU2rbKHekBriTuHDMR3mDZLq5EF7EBMwODVIGBjYxhXB2x1pH0IgulSmCzNO8YFz0ZOQH0f3NZpgYCajqbus85Ic3U+wWlK1yWxXKBGIISmEcAqjmnqia6nqcfNEQj6xsouf/732WCZstXoMIdjyGHncg1XHTkHyAuDlptQNMSSQznaxsQbycDiKrUOtOotrfVpB9hgH/4Psz9lYYTI+9E6LaE8etjwqZNeiTfkaj2ObfAs1SeYRK4287aTJCuFYTklHDrd/TgVIsOt3tVxB8+Aq6hOKu70dY7bZk4f/ZOpaEbNAdhk2n8S+vIA60BaYn9gAbJkcuQz5BVvl9twS0m8DyOgLwKv3rdRKRS7AvxtYooUTyjwVcp7iIqAqVONL+oHY9zvfJeY7TgDwrAqBX3urcpnCjyX3L5xcwnOumi/dxyT8eObE2lTeC3k72j1SXwSYd4XX3UzGn/Thhj95hadUXstFbvgeSVFFsY4XHJ7fKG/XEj9Jf6ToD6ouwptotMqecpapG//uHczUNfTg=
+  app: hiitea-api
+  on:
+    repo: sabrinaluo/api
+  run:
+    - restart
