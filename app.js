@@ -3,9 +3,9 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const config = require('./config');
 
-const PORT = config.get('PORT');
+const ENV = process.env.NODE_ENV;
+const PORT = ENV === 'production' ? 80 : 3000;
 
 let app = express();
 
