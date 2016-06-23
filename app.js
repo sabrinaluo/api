@@ -4,9 +4,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
-const ENV = process.env.NODE_ENV;
-const PORT = ENV === 'production' ? 80 : 3000;
-
+const PORT = process.env.PORT || 3000;
 let app = express();
 
 app.use(bodyParser.json());
