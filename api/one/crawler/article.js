@@ -18,7 +18,6 @@ class Article extends Crawler {
           let selector = map[key];
           json[key] = $(selector).text().trim();
         });
-
         json.content = $('.articulo-contenido').html().trim();
         return json;
       });

@@ -15,7 +15,7 @@ router.route('/')
       .then(data => {
         res.json(data);
       })
-      .catch(e=> {
+      .catch(e => {
         next(e);
       });
   });
@@ -29,7 +29,7 @@ router.route('/question/:id')
       .then(data => {
         res.json(data);
       })
-      .catch(e=> {
+      .catch(e => {
         next(e);
       });
   });
@@ -37,14 +37,14 @@ router.route('/question/:id')
 router.route('/article/:id')
   .get((req, res, next) => {
     let url = root + '/article/' + req.params.id;
-    let articleCrawler = new crawler.Question(url);
+    let articleCrawler = new crawler.Article(url);
     articleCrawler
       .get()
       .then(data => {
         res.json(data);
       })
-      .catch(e=> {
-        next(e)
+      .catch(e => {
+        next(e);
       });
   });
 
