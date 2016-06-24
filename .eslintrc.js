@@ -1,3 +1,6 @@
 module.exports = {
-    "extends": "google"
+  extends: 'google',
+  rules: {
+    'new-cap': [0]
+  }
 };
