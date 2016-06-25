@@ -19,6 +19,8 @@ class Home extends Crawler {
             author: $('.one-articulo-titulo small').text().trim().substring(2)
           }
         };
+        let articleOne = json.article.one;
+        articleOne.id = getId(articleOne.url);
 
         json.question = {
           list: parseList($ul.eq(1).find('li'), 'question'),
@@ -28,6 +30,8 @@ class Home extends Crawler {
             title: $('.one-cuestion-titulo').text().trim()
           }
         };
+        let questionOne = json.question.one;
+        questionOne.id = getId(questionOne.url);
 
         json.slide = parseCarousel($);
         return json;
@@ -44,6 +48,7 @@ function parseList($list, type) {
     let $a = $li.find('a');
     o.vol = $li.find('.text-muted').text().trim();
     o.url = $a.attr('href');
+    o.id = getId(o.url);
 
     if (type === 'article') {
       o.author = $li.find('small').text().trim().substring(2);
@@ -67,6 +72,7 @@ function parseCarousel($) {
     o.url = $a.attr('href');
     o.content = $a.text().trim();
     o.img = $item.find('img').attr('src');
+    o.id = getId(o.url);
     o.author = $item.find('.fp-one-imagen-footer').text().trim().slice(0, -3);
     o.vol = $item.find('.titulo').text().trim();
     o.day = $item.find('.dom').text().trim();
@@ -74,6 +80,11 @@ function parseCarousel($) {
     list.push(o);
   }
   return list;
+}
+
+function getId(url) {
+  let match = url.match(/\/([0-9]+)$/) || [];
+  return Number(match[1]) || 0;
 }
 
 module.exports = Home;
