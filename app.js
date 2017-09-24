@@ -13,6 +13,7 @@ app.use(bodyParser.json());
 app.use(cors());
 
 app.use('/one', require('./api/one'));
+app.use('/hk01', require('./api/hk01'));
 app.use('*', require('./api/404'));
 app.use(require('./api/500'));
 
