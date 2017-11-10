@@ -7,7 +7,7 @@ class Crawler {
   constructor(url) {
     this.url = url;
     let type = url.match(/article|question/);
-    this.type = type && type[0] || 'home';
+    this.type = (type && type[0]) || 'home';
   }
 
   get() {

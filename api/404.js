@@ -6,7 +6,7 @@ const router = express.Router();
 // 404
 router.route('*')
   .get((req, res, next) => {
-    let e = new Error('Not Found');
+    const e = new Error('Not Found');
     e.statusCode = 404;
     next(e);
   });
