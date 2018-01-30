@@ -3,10 +3,10 @@ require('./env');
 
 // below structure is required by sequelize, this file will be used by *sequelize-cli
 const options = {
-  username: process.env.DB_USERNAME,
-  password: process.env.DB_PASSWORD,
+  username: process.env.DB_USER,
+  password: process.env.DB_PASS,
   database: process.env.DB_NAME,
-  host: process.env.DB_HOSTNAME,
+  host: process.env.DB_HOST,
   dialect: 'postgres'
 }
 
