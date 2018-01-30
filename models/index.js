@@ -8,7 +8,7 @@ const dbConfig = require('../config/db-config');
 const sequelize = new Sequelize(
   dbConfig[process.env.NODE_ENV || 'development']
 );
-console.log(sequelize)
+
 const db = {};
 
 // load model
