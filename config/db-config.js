@@ -7,7 +7,8 @@ const options = {
   password: process.env.DB_PASS,
   database: process.env.DB_NAME,
   host: process.env.DB_HOST,
-  dialect: 'postgres'
+  dialect: 'postgres',
+  timezone: '+08:00'
 }
 
 module.exports = {
