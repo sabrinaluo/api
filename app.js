@@ -3,15 +3,20 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const passport = require('passport');
 
+require('./config');
 const PORT = process.env.PORT || 3000;
-let app = express();
+const app = express();
 
 app.use(bodyParser.json());
 
 // allow cors
 app.use(cors());
 
+app.use(passport.initialize());
+
+app.use('/auth', require('./api/auth'));
 app.use('/one', require('./api/one'));
 app.use('/hk01', require('./api/hk01'));
 app.use('*', require('./api/404'));

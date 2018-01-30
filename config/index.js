@@ -1,0 +1,3 @@
+require('./env');
+
+module.exports = {};
