@@ -5,10 +5,11 @@ const Crawler = require('./_crawler');
 class Question extends Crawler {
   get() {
     return super.get()
-      .then($ => {
-        let json = {};
-        let title = $('h4');
-        let content = $('.cuestion-contenido');
+      .then(response => {
+        const $ = response.data;
+        const json = {};
+        const title = $('h4');
+        const content = $('.cuestion-contenido');
 
         json.question = {
           title: title.eq(0).text().trim(),

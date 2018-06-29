@@ -5,9 +5,10 @@ const Crawler = require('./_crawler');
 class Article extends Crawler {
   get() {
     return super.get()
-      .then($ => {
-        let json = {};
-        let map = {
+      .then(response => {
+        const $ = response.data;
+        const json = {};
+        const map = {
           quote: '.comilla-cerrar',
           title: '.articulo-titulo',
           author: '.articulo-autor',
@@ -15,7 +16,7 @@ class Article extends Crawler {
         };
 
         Object.keys(map).forEach(key => {
-          let selector = map[key];
+          const selector = map[key];
           json[key] = $(selector).text().trim();
         });
         json.content = $('.articulo-contenido').html().trim();

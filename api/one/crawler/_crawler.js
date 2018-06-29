@@ -1,6 +1,6 @@
 'use strict';
 
-const request = require('request-promise');
+const axios = require('axios');
 const cheerio = require('cheerio');
 
 class Crawler {
@@ -13,12 +13,12 @@ class Crawler {
   get() {
     let options = {
       url: this.url,
-      transform: function(body) {
-        return cheerio.load(body, {decodeEntities: false});
+      transformResponse: function(data) {
+        return cheerio.load(data, {decodeEntities: false});
       }
     };
 
-    return request(options);
+    return axios(options);
   }
 }
 

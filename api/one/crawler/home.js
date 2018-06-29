@@ -5,10 +5,11 @@ const Crawler = require('./_crawler');
 class Home extends Crawler {
   get() {
     return super.get()
-      .then($ => {
-        let json = {};
-        let $vol = $('.one-titulo');
-        let $ul = $('.pasado');
+      .then(response => {
+        const $ = response.data;
+        const json = {};
+        const $vol = $('.one-titulo');
+        const $ul = $('.pasado');
 
         json.article = {
           list: parseList($ul.eq(0).find('li'), 'article'),
@@ -19,7 +20,7 @@ class Home extends Crawler {
             author: $('.one-articulo-titulo small').text().trim().substring(2)
           }
         };
-        let articleOne = json.article.one;
+        const articleOne = json.article.one;
         articleOne.id = getId(articleOne.url);
 
         json.question = {
@@ -30,7 +31,7 @@ class Home extends Crawler {
             title: $('.one-cuestion-titulo').text().trim()
           }
         };
-        let questionOne = json.question.one;
+        const questionOne = json.question.one;
         questionOne.id = getId(questionOne.url);
 
         json.slide = parseCarousel($);
