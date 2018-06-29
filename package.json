@@ -18,8 +18,9 @@
   },
   "homepage": "https://github.com/sabrinaluo/api#readme",
   "dependencies": {
+    "axios": "^0.18.0",
     "body-parser": "^1.18.3",
-    "cheerio": "^0.22.0",
+    "cheerio": "^1.0.0-rc.2",
     "cors": "^2.7.1",
     "dotenv": "^6.0.0",
     "express": "^4.16.3",
@@ -29,8 +30,6 @@
     "passport-jwt": "^4.0.0",
     "pg": "^7.4.3",
     "pg-hstore": "^2.3.2",
-    "request": "^2.87.0",
-    "request-promise": "^4.2.2",
     "sequelize": "^4.38.0"
   },
   "devDependencies": {
