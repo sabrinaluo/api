@@ -1,8 +1,0 @@
-{
-  "extends": "google",
-  "rules": {
-    "new-cap": [0],
-    "quotes": ["error",  "single"],
-    "newline-per-chained-call": ["error", { "ignoreChainWithDepth": 5 }]
-  }
-}
