@@ -6,7 +6,8 @@ import { AuthModule } from './auth/auth.module';
 import config from './config';
 import { Hk01Module } from './hk01/hk01.module';
 import { OneModule } from './one/one.module';
-import { UsersModule } from './users/users.module';
+import { PrismaService } from './prisma/prisma.service';
+import { UserModule } from './user/user.module';
 
 @Module({
   imports: [
@@ -16,9 +17,10 @@ import { UsersModule } from './users/users.module';
     }),
     OneModule,
     AuthModule,
-    UsersModule,
+    UserModule,
     Hk01Module,
   ],
   controllers: [AppController],
+  providers: [PrismaService],
 })
 export class AppModule {}

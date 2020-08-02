@@ -1,33 +1,68 @@
-import { Injectable } from '@nestjs/common';
+import * as crypto from 'crypto';
+
+import {
+  BadRequestException,
+  ForbiddenException,
+  Injectable,
+} from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
+import { user as User } from '@prisma/client';
 
-import { UsersService } from '../users/users.service';
+import { UserService } from '../user/user.service';
 
 @Injectable()
 export class AuthService {
   constructor(
-    private usersService: UsersService,
+    private usersService: UserService,
     private jwtService: JwtService,
     private configService: ConfigService,
   ) {}
 
+  encryptMd5(str: string) {
+    const salt = this.configService.get('salt');
+    const md5Hash = crypto
+      .createHash('md5')
+      .update(str + salt)
+      .digest('hex');
+
+    return md5Hash;
+  }
+
   async validateUser(username: string, pass: string): Promise<any> {
-    const user = await this.usersService.findOne(username);
-    if (user?.password === pass) {
+    const user = await this.usersService.getUser({
+      username,
+    });
+
+    if (user?.password === this.encryptMd5(pass)) {
       const { password, ...result } = user;
       return result;
     }
     return null;
   }
 
-  async login(user: any) {
-    console.log(111, this, this.configService.get('PORT'));
-
-    const payload = { username: user.username, sub: user.userId };
+  async login(user: User) {
+    const payload = { username: user.username, sub: user.id };
 
     return {
       access_token: this.jwtService.sign(payload),
     };
+  }
+
+  async signUp({ username, password }) {
+    if (!username || !password) {
+      throw new BadRequestException('invalid username / password');
+    }
+
+    const isUsernameExisted = await this.usersService.getUser({ username });
+
+    if (isUsernameExisted) {
+      throw new ForbiddenException('username is existed');
+    }
+
+    return this.usersService.createUser({
+      username,
+      password: this.encryptMd5(password),
+    });
   }
 }

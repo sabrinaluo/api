@@ -19,4 +19,9 @@ export class AppController {
   getProfile(@Request() req) {
     return req.user;
   }
+
+  @Post('auth/signup')
+  async signUp(@Request() req) {
+    return this.authService.signUp(req.body);
+  }
 }
