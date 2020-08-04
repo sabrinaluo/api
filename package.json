@@ -2,15 +2,15 @@
   "name": "hiitea-api",
   "version": "0.0.1",
   "description": "A collection of useful API",
-  "main": "app.js",
+  "main": "dist/main.js",
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
-    "start": "nest start",
+    "start:dev": "nest start",
     "dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",
-    "start:prod": "node dist/main",
+    "start": "node dist/main",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
     "test": "jest",
     "test:watch": "jest --watch",
@@ -80,5 +80,9 @@
     "ts-node": "^8.10.2",
     "tsconfig-paths": "^3.9.0",
     "typescript": "^3.9.3"
+  },
+  "engines": {
+    "yarn": ">=1.16.0",
+    "node": ">=12.4.0"
   }
 }
