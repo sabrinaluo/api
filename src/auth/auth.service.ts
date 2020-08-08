@@ -41,11 +41,11 @@ export class AuthService {
     return null;
   }
 
-  async login(user: User) {
-    const payload = { username: user.username, sub: user.id };
-
+  async login({ username }: User) {
     return {
-      access_token: this.jwtService.sign(payload),
+      access_token: this.jwtService.sign({
+        username,
+      }),
     };
   }
 
@@ -60,9 +60,14 @@ export class AuthService {
       throw new ForbiddenException('username is existed');
     }
 
-    return this.usersService.createUser({
+    const { createdAt } = await this.usersService.createUser({
       username,
       password: this.encryptMd5(password),
     });
+
+    return {
+      username,
+      createdAt,
+    };
   }
 }
