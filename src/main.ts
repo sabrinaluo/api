@@ -10,7 +10,10 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   const configService = app.get(ConfigService);
 
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore Types of helmet is incorrect
   app.use(helmet());
+
   app.enableCors({
     origin: configService.get('corsWhitelistOrigin'),
     methods: ['GET', 'POST'],
