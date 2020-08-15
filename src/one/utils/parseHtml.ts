@@ -72,7 +72,12 @@ export const parseSlide = ($: CheerioStatic): CrawlerSlideItem[] => {
 
     return {
       url,
-      content: $item.find('a').eq(1).text().trim(),
+      content: $item
+        .find('a')
+        .eq(1)
+        .text()
+        .trim()
+        .replace(/(?!\n)\s+/g, ''),
       img: $item.find('img').attr('src'),
       id: getIdFromUrl(url),
       author: $item.find('.fp-one-imagen-footer').text().trim().slice(0, -3),
