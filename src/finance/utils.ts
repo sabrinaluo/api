@@ -7,7 +7,7 @@ import { StockMarket, StockPrice } from './types';
 export const getYahooTickerByMarket = (
   market: StockMarket,
   _symbol: string,
-  yahooSymbol?: string,
+  yahoo?: string,
 ) => {
   const symbol = String(_symbol);
   switch (market) {
@@ -16,7 +16,7 @@ export const getYahooTickerByMarket = (
     case StockMarket.CSI:
       return symbol + (symbol.startsWith('60') ? '.SS' : '.SZ');
     case StockMarket.SPX:
-      return yahooSymbol ?? symbol;
+      return yahoo ?? symbol;
   }
 };
 

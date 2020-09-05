@@ -17,5 +17,5 @@ export interface StockJobItem {
 export interface CsvItem {
   symbol: string;
   sector: string;
-  yahooSymbol?: string;
+  yahoo?: string;
 }

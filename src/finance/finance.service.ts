@@ -31,7 +31,7 @@ export class FinanceService {
     if (!data) {
       const json = await parseStockInfo<CsvItem>(market);
       this.stocks[market] = json.map((o) => ({
-        ticker: getYahooTickerByMarket(market, o.symbol, o.yahooSymbol),
+        ticker: getYahooTickerByMarket(market, o.symbol, o.yahoo),
         sector: o.sector,
       }));
     }
