@@ -1,3 +1,0 @@
-require('./env');
-
-module.exports = {};
