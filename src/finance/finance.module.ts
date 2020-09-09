@@ -16,10 +16,7 @@ import { FinanceService } from './finance.service';
       name: 'finance',
       imports: [ConfigModule],
       useFactory: async (configService: ConfigService) => ({
-        redis: {
-          host: configService.get('REDIS_HOST'),
-          port: configService.get('REDIS_PORT'),
-        },
+        redis: configService.get('REDIS_URL'),
       }),
       inject: [ConfigService],
     }),
