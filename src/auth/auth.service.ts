@@ -35,7 +35,7 @@ export class AuthService {
     });
 
     if (user?.password === this.encryptMd5(pass)) {
-      const { password, ...result } = user;
+      const { password: _, ...result } = user;
       return result;
     }
     return null;

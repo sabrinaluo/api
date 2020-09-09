@@ -2,12 +2,8 @@ import { InjectQueue } from '@nestjs/bull';
 import { Injectable } from '@nestjs/common';
 import { Queue } from 'bull';
 
-import { CsvItem, StockJobItem, StockMarket } from './types';
-import {
-  getTickerSector,
-  getYahooTickerByMarket,
-  parseStockInfo,
-} from './utils';
+import { StockJobItem, StockMarket } from './types';
+import { getTickerSector } from './utils';
 
 interface Stock {
   ticker: string;

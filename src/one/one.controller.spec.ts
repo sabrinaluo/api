@@ -6,7 +6,6 @@ import { OneService } from './one.service';
 
 describe('One Controller', () => {
   let oneController: OneController;
-  let oneService: OneService;
 
   beforeEach(async () => {
     const moduleRef: TestingModule = await Test.createTestingModule({
@@ -16,7 +15,6 @@ describe('One Controller', () => {
     }).compile();
 
     oneController = moduleRef.get<OneController>(OneController);
-    oneService = await moduleRef.resolve(OneService);
   });
 
   it('should be defined', () => {

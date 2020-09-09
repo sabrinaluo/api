@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { userWhereUniqueInput as UserWhereUniqueInput } from '@prisma/client';
 
 import { PrismaService } from '../prisma/prisma.service';
