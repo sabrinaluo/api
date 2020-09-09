@@ -2,7 +2,7 @@ import { resolve } from 'path';
 
 import { readFile } from 'fs/promises';
 
-import { StockMarket, StockPrice } from './types';
+import { CsvItem, StockMarket, StockPrice } from './types';
 
 export const getYahooTickerByMarket = (
   market: StockMarket,
@@ -14,9 +14,11 @@ export const getYahooTickerByMarket = (
     case StockMarket.HSI:
       return symbol.padStart(4, '0') + '.hk';
     case StockMarket.CSI:
-      return symbol + (symbol.startsWith('60') ? '.SS' : '.SZ');
+      return (
+        symbol.padStart(6, '0') + (symbol.startsWith('60') ? '.SS' : '.SZ')
+      );
     case StockMarket.SPX:
-      return yahoo ?? symbol;
+      return yahoo || symbol;
   }
 };
 
@@ -75,4 +77,12 @@ export const parseStockInfo = async <T>(filename: StockMarket) => {
   const json = parseCsvToJson<T>(csv.toString());
 
   return json;
+};
+
+export const getTickerSector = async (market: StockMarket) => {
+  const json = await parseStockInfo<CsvItem>(market);
+  return json.map((o) => ({
+    ticker: getYahooTickerByMarket(market, o.symbol, o.yahoo),
+    sector: o.sector,
+  }));
 };

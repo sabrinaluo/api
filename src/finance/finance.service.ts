@@ -3,7 +3,11 @@ import { Injectable } from '@nestjs/common';
 import { Queue } from 'bull';
 
 import { CsvItem, StockJobItem, StockMarket } from './types';
-import { getYahooTickerByMarket, parseStockInfo } from './utils';
+import {
+  getTickerSector,
+  getYahooTickerByMarket,
+  parseStockInfo,
+} from './utils';
 
 interface Stock {
   ticker: string;
@@ -29,14 +33,14 @@ export class FinanceService {
   private async getStocksByMarket(market: StockMarket) {
     const data = this.stocks[market];
     if (!data) {
-      const json = await parseStockInfo<CsvItem>(market);
-      this.stocks[market] = json.map((o) => ({
-        ticker: getYahooTickerByMarket(market, o.symbol, o.yahoo),
-        sector: o.sector,
-      }));
+      this.stocks[market] = await getTickerSector(market);
     }
 
     return this.stocks[market];
+  }
+
+  async getQueue() {
+    return this.financeQueue.getJobs(['completed', 'waiting']);
   }
 
   async startDownload(maxItem = Infinity) {
