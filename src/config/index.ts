@@ -28,7 +28,7 @@ const getConfig = (
   }
 
   /* eslint-disable @typescript-eslint/no-var-requires */
-  appConfig = appConfig || loadAppConfig(process.env.NODE_ENV);
+  appConfig = appConfig || loadAppConfig(process.env.NODE_ENV || 'development');
   envConfig = envConfig || require('./config.env').default;
   defaultConfig = defaultConfig || require('./config.default').default;
   /* eslint-enable @typescript-eslint/no-var-requires */

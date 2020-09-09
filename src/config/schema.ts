@@ -9,6 +9,8 @@ const schema = t.strict({
   PASS_SALT: t.string,
   JWT_SECRET: t.string,
   DATABASE_URL: t.string,
+  REDIS_HOST: t.string,
+  REDIS_PORT: t.union([t.Int, IntFromString]),
   corsWhitelistOrigin: t.union([StringOrRegexp, t.array(StringOrRegexp)]),
   jwtExpireIn: t.union([t.string, t.Int]),
 });
